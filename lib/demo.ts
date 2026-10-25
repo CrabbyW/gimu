@@ -6,3 +6,6 @@ export const DEMO_BUILD = process.env.EXPO_PUBLIC_DEMO === '1';
 let demoSkipped = false;
 export const skipDemoSeed = () => { demoSkipped = true; };
 export const demoSeedSkipped = () => demoSkipped;
+
+/** Webové demo pro komisi (`npm run web:demo`): demo build, ale bez předvyplněného profilu — intro, onboarding a prohlídka mapy jako u nového uživatele. */
+export const DEMO_FRESH = process.env.EXPO_PUBLIC_DEMO_FRESH === '1';

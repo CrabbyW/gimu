@@ -5,12 +5,14 @@ import { execSync } from 'node:child_process';
 import { readdirSync, readFileSync, renameSync, statSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 
-execSync('npx expo export --platform web --clear', { stdio: 'inherit', env: { ...process.env, EXPO_PUBLIC_DEMO: '1' } });
+execSync('npx expo export --platform web --clear', { stdio: 'inherit', env: { ...process.env, EXPO_PUBLIC_DEMO: '1', EXPO_PUBLIC_DEMO_FRESH: '1' } });
 renameSync('dist/assets/node_modules', 'dist/assets/nm');
 const walk = (dir) => readdirSync(dir).flatMap((f) => (statSync(join(dir, f)).isDirectory() ? walk(join(dir, f)) : [join(dir, f)]));
 for (const file of walk('dist').filter((f) => /\.(js|html|json)$/.test(f))) {
   const src = readFileSync(file, 'utf8');
   if (src.includes('assets/node_modules/')) writeFileSync(file, src.replaceAll('assets/node_modules/', 'assets/nm/'));
 }
+// Tmavý podklad hned od načtení stránky (jinak bílý záblesk, než naběhne JS a intro).
+writeFileSync('dist/index.html', readFileSync('dist/index.html', 'utf8').replace('<body>', '<body style="background:#000">'));
 writeFileSync('dist/vercel.json', JSON.stringify({ rewrites: [{ source: '/(.*)', destination: '/index.html' }] }));
 console.log('Webové demo v dist/ připravené.');
