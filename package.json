@@ -66,6 +66,7 @@
     "perf:baseline": "node scripts/perf.mjs baseline",
     "perf:compare": "node scripts/perf.mjs compare",
     "phone": "node scripts/phone.mjs",
+    "web:demo": "node scripts/web-demo.mjs",
     "e2e:perf": "expo export --platform web && playwright test -c e2e/playwright.config.ts --project=perf-prod"
   },
   "jest": {
