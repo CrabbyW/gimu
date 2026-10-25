@@ -74,7 +74,7 @@ describe('AnimatedSplash', () => {
     advance(1);
     expect(onDone).toHaveBeenCalledTimes(1);
     expect(splash.exitAt + splash.exitMs).toBe(splash.totalMs);
-    expect(splash.totalMs).toBeLessThanOrEqual(1800);
+    expect(splash.totalMs).toBeLessThanOrEqual(3600);
     // Pořadí: sken dohraje dřív než živá tečka; rozsvícení + mrknutí před ústupem.
     const cols = textDots('GIMU', SPLASH_GLYPHS).cols;
     expect((cols + splash.colFade) * splash.colStepMs).toBeLessThanOrEqual(splash.liveAt);

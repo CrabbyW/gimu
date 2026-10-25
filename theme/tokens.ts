@@ -201,11 +201,11 @@ export const material = {
 } as const;
 // Názvy rodin = klíče předané do useFonts v app/_layout.tsx. Váha je součást rodiny:
 // fontWeight se s nimi nekombinuje (Android u vlastních fontů váhu nesyntetizuje).
-// R42: display je Inter 300 Light (místo Bebas Neue), bez nové závislosti.
+// R42: display je Plus Jakarta Sans 300 Light (uživatel 2026-10-25, místo Inter).
 export const font = {
   // Nothing Dot §2.2: `dot` = Doto 700 (dot-matrix), jen ≥ 28 pt (hero čísla, kg, titulek obrazovky).
   dot: 'Doto_700Bold',
-  display: 'Inter_300Light', body: 'Inter_400Regular', bodyStrong: 'Inter_600SemiBold', mono: 'JetBrainsMono_500Medium',
+  display: 'PlusJakartaSans_300Light', body: 'PlusJakartaSans_400Regular', bodyStrong: 'PlusJakartaSans_600SemiBold', mono: 'JetBrainsMono_500Medium',
 } as const;
 // Tracking v em; RN letterSpacing je v pt, proto `ls(size, em)`.
 export const tracking = { display: -0.03, label: 0.18, telemetry: 0.2 } as const;

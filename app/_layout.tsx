@@ -1,8 +1,8 @@
 // Importy po řezech: kořen balíčku by do bundlu přibalil všechny váhy (desítky TTF).
 // R42: display je Inter 300 Light; Bebas Neue se už nenačítá (balíček zůstává, nic ho neimportuje).
-import { Inter_300Light } from '@expo-google-fonts/inter/300Light';
-import { Inter_400Regular } from '@expo-google-fonts/inter/400Regular';
-import { Inter_600SemiBold } from '@expo-google-fonts/inter/600SemiBold';
+import { PlusJakartaSans_300Light } from '@expo-google-fonts/plus-jakarta-sans/300Light';
+import { PlusJakartaSans_400Regular } from '@expo-google-fonts/plus-jakarta-sans/400Regular';
+import { PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans/600SemiBold';
 import { JetBrainsMono_500Medium } from '@expo-google-fonts/jetbrains-mono/500Medium';
 import { Doto_700Bold } from '@expo-google-fonts/doto/700Bold';
 import { useFonts } from 'expo-font';
@@ -32,7 +32,7 @@ const introDisabled = () => (globalThis as { __OPICE_NO_INTRO__?: boolean }).__O
 const introHeld = () => (globalThis as { __OPICE_HOLD_INTRO__?: boolean }).__OPICE_HOLD_INTRO__ === true;
 
 export default function RootLayout() {
-  const [fontsLoaded, fontError] = useFonts({ Doto_700Bold, Inter_300Light, Inter_400Regular, Inter_600SemiBold, JetBrainsMono_500Medium });
+  const [fontsLoaded, fontError] = useFonts({ Doto_700Bold, PlusJakartaSans_300Light, PlusJakartaSans_400Regular, PlusJakartaSans_600SemiBold, JetBrainsMono_500Medium });
   const hydrated = useHydrated();
   // Intro jen při studeném startu (takeIntro = poprvé za JS kontext); návrat z pozadí kontext nemění, nehraje se.
   const [intro, setIntro] = useState(() => !introDisabled() && takeIntro());
