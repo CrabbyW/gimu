@@ -18,6 +18,7 @@ import { useProfile } from '@/hooks/useProfile';
 import { useProfileStats } from '@/hooks/useProfileStats';
 import { REMINDER_HOURS, useSettingsPrefs, type ThemePreference } from '@/hooks/useSettingsPrefs';
 import { haptics } from '@/lib/haptics';
+import { DEMO_BUILD } from '@/lib/demo';
 import { poseForAppState } from '@/logic/mascotPoses';
 import { intro, motion } from '@/lib/motion';
 import { services } from '@/services';
@@ -179,7 +180,7 @@ export default function SettingsScreen() {
           </Tile>
         </Section>
 
-        {__DEV__ ? (
+        {__DEV__ || DEMO_BUILD ? (
           <Section i={6} play={first}>
             <Tile pad="none">
               <PressRow last onPress={() => router.push('/dev')} accessibilityLabel={copy.settings.dev} role="link">
