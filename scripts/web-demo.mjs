@@ -13,6 +13,10 @@ for (const file of walk('dist').filter((f) => /\.(js|html|json)$/.test(f))) {
   if (src.includes('assets/node_modules/')) writeFileSync(file, src.replaceAll('assets/node_modules/', 'assets/nm/'));
 }
 // Tmavý podklad hned od načtení stránky (jinak bílý záblesk, než naběhne JS a intro).
-writeFileSync('dist/index.html', readFileSync('dist/index.html', 'utf8').replace('<body>', '<body style="background:#000">'));
+// Každé otevření = nový uživatel (intro, výběr cesty, onboarding, prohlídka mapy): smazat uložená data (AsyncStorage na webu = localStorage) dřív, než naběhne appka.
+const html = readFileSync('dist/index.html', 'utf8')
+  .replace('<head>', '<head><script>try{localStorage.clear()}catch(e){}</script>')
+  .replace('<body>', '<body style="background:#000">');
+writeFileSync('dist/index.html', html);
 writeFileSync('dist/vercel.json', JSON.stringify({ rewrites: [{ source: '/(.*)', destination: '/index.html' }] }));
 console.log('Webové demo v dist/ připravené.');
