@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 import type { MascotStage } from '@/types';
+import { DEMO_BUILD } from '@/lib/demo';
 import { useDb } from './db';
 
 export type ThemePreference = 'system' | 'light' | 'dark';
@@ -14,7 +15,8 @@ interface PersistedSettings {
   hapticsEnabled: boolean; soundEnabled: boolean;
 }
 const DEFAULTS: PersistedSettings = {
-  theme: 'system', devTimeOffsetMs: 0, reminderEnabled: false, reminderHour: 18, stageOverride: null, hapticsEnabled: true, soundEnabled: true,
+  // Demo build (webové demo pro komisi): výchozí tmavé schéma bez ohledu na systém.
+  theme: DEMO_BUILD ? 'dark' : 'system', devTimeOffsetMs: 0, reminderEnabled: false, reminderHour: 18, stageOverride: null, hapticsEnabled: true, soundEnabled: true,
 };
 const STAGES: readonly unknown[] = [1, 2, 3];
 const THEMES: readonly unknown[] = ['system', 'light', 'dark'];
